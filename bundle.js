@@ -249,7 +249,7 @@ eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];\n    result[\"default\"] = mod;\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Store_1 = __webpack_require__(/*! ../../store/Store */ \"./src/app/store/Store.tsx\");\nconst actions_1 = __webpack_require__(/*! ../../store/actions */ \"./src/app/store/actions.ts\");\nclass TodoComponent extends React.PureComponent {\n    constructor(props) {\n        super(props);\n    }\n    render() {\n        return React.createElement(\"li\", { onClick: () => this.props.context.dispatch(actions_1.AddTodo(this.props.todo)) }, this.props.todo);\n    }\n}\nexports.Todo = Store_1.withAppContext(TodoComponent);\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/Todo.tsx?");
+eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];\n    result[\"default\"] = mod;\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Store_1 = __webpack_require__(/*! ../../store/Store */ \"./src/app/store/Store.tsx\");\nconst actions_1 = __webpack_require__(/*! ./actions */ \"./src/app/components/TodoList/actions.ts\");\nclass TodoComponent extends React.PureComponent {\n    constructor(props) {\n        super(props);\n    }\n    render() {\n        return React.createElement(\"li\", null,\n            this.props.todo,\n            React.createElement(\"button\", { onClick: () => this.props.context.dispatch(actions_1.RemoveTodo(this.props.todo)) }, \"Remove todo\"));\n    }\n}\nexports.Todo = Store_1.withAppContext(TodoComponent);\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/Todo.tsx?");
 
 /***/ }),
 
@@ -261,7 +261,7 @@ eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];\n    result[\"default\"] = mod;\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Store_1 = __webpack_require__(/*! ../../store/Store */ \"./src/app/store/Store.tsx\");\nconst actions_1 = __webpack_require__(/*! ../../store/actions */ \"./src/app/store/actions.ts\");\nclass TodoInputComponent extends React.PureComponent {\n    constructor(props) {\n        super(props);\n        this.state = { text: \"\" };\n        this.update = this.update.bind(this);\n        this.onSubmit = this.onSubmit.bind(this);\n    }\n    update(event) {\n        this.setState({ text: event.target.value });\n    }\n    onSubmit(event) {\n        event.preventDefault();\n        event.stopPropagation();\n        this.props.context.dispatch(actions_1.AddTodo(this.state.text));\n        this.setState({ text: \"\" });\n        return false;\n    }\n    render() {\n        return React.createElement(\"form\", { onSubmit: this.onSubmit },\n            React.createElement(\"input\", { type: \"text\", name: \"todo\", value: this.state.text, onChange: this.update }));\n    }\n}\nexports.TodoInput = Store_1.withAppContext(TodoInputComponent);\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/TodoInput.tsx?");
+eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];\n    result[\"default\"] = mod;\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Store_1 = __webpack_require__(/*! ../../store/Store */ \"./src/app/store/Store.tsx\");\nconst actions_1 = __webpack_require__(/*! ./actions */ \"./src/app/components/TodoList/actions.ts\");\nclass TodoInputComponent extends React.PureComponent {\n    constructor(props) {\n        super(props);\n        this.state = { text: \"\" };\n        this.update = this.update.bind(this);\n        this.onSubmit = this.onSubmit.bind(this);\n    }\n    update(event) {\n        this.setState({ text: event.target.value });\n    }\n    onSubmit(event) {\n        event.preventDefault();\n        event.stopPropagation();\n        this.props.context.dispatch(actions_1.AddTodo(this.state.text));\n        this.setState({ text: \"\" });\n        return false;\n    }\n    render() {\n        return React.createElement(\"form\", { onSubmit: this.onSubmit },\n            React.createElement(\"input\", { type: \"text\", name: \"todo\", value: this.state.text, onChange: this.update }));\n    }\n}\nexports.TodoInput = Store_1.withAppContext(TodoInputComponent);\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/TodoInput.tsx?");
 
 /***/ }),
 
@@ -273,7 +273,31 @@ eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];\n    result[\"default\"] = mod;\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Store_1 = __webpack_require__(/*! ../../store/Store */ \"./src/app/store/Store.tsx\");\nconst Todo_1 = __webpack_require__(/*! ./Todo */ \"./src/app/components/TodoList/Todo.tsx\");\nconst TodoInput_1 = __webpack_require__(/*! ./TodoInput */ \"./src/app/components/TodoList/TodoInput.tsx\");\nclass TodoListComponent extends React.PureComponent {\n    constructor(props) {\n        super(props);\n    }\n    render() {\n        return React.createElement(React.Fragment, null,\n            React.createElement(\"ul\", null, this.props.context.state.todoList.todos.map((todo, index) => {\n                return React.createElement(Todo_1.Todo, { key: index, todo: todo });\n            })),\n            React.createElement(TodoInput_1.TodoInput, null));\n    }\n}\nexports.TodoList = Store_1.withAppContext(TodoListComponent);\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/TodoList.tsx?");
+eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];\n    result[\"default\"] = mod;\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst React = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nconst Store_1 = __webpack_require__(/*! ../../store/Store */ \"./src/app/store/Store.tsx\");\nconst Todo_1 = __webpack_require__(/*! ./Todo */ \"./src/app/components/TodoList/Todo.tsx\");\nconst TodoInput_1 = __webpack_require__(/*! ./TodoInput */ \"./src/app/components/TodoList/TodoInput.tsx\");\nconst actions_1 = __webpack_require__(/*! ./actions */ \"./src/app/components/TodoList/actions.ts\");\nclass TodoListComponent extends React.PureComponent {\n    constructor(props) {\n        super(props);\n    }\n    render() {\n        return React.createElement(React.Fragment, null,\n            React.createElement(\"ul\", null, this.props.context.state.todoList.todos.map((todo, index) => {\n                return React.createElement(Todo_1.Todo, { key: index, todo: todo });\n            })),\n            React.createElement(TodoInput_1.TodoInput, null),\n            React.createElement(\"button\", { onClick: () => this.props.context.dispatch(actions_1.RemoveAllTodos()) }, \"remove all\"));\n    }\n}\nexports.TodoList = Store_1.withAppContext(TodoListComponent);\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/TodoList.tsx?");
+
+/***/ }),
+
+/***/ "./src/app/components/TodoList/actions.ts":
+/*!************************************************!*\
+  !*** ./src/app/components/TodoList/actions.ts ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst actions_1 = __webpack_require__(/*! ../../store/actions */ \"./src/app/store/actions.ts\");\nconst events_1 = __webpack_require__(/*! ./events */ \"./src/app/components/TodoList/events.ts\");\nexports.AddTodo = actions_1.createAction(events_1.TodoListEvents.ADD_TODO);\nexports.RemoveTodo = actions_1.createAction(events_1.TodoListEvents.REMOVE_TODO);\nexports.RemoveAllTodos = actions_1.createAction(events_1.TodoListEvents.REMOVE_ALL_TODOS);\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/actions.ts?");
+
+/***/ }),
+
+/***/ "./src/app/components/TodoList/events.ts":
+/*!***********************************************!*\
+  !*** ./src/app/components/TodoList/events.ts ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar TodoListEvents;\n(function (TodoListEvents) {\n    TodoListEvents[\"ADD_TODO\"] = \"ADD_TODO\";\n    TodoListEvents[\"REMOVE_TODO\"] = \"REMOVE_TODO\";\n    TodoListEvents[\"REMOVE_ALL_TODOS\"] = \"REMOVE_ALL_TODOS\";\n})(TodoListEvents = exports.TodoListEvents || (exports.TodoListEvents = {}));\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/events.ts?");
 
 /***/ }),
 
@@ -285,7 +309,7 @@ eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst events_1 = __webpack_require__(/*! ../../store/events */ \"./src/app/store/events.ts\");\nexports.todoReducer = (action, state) => {\n    switch (action.type) {\n        case events_1.Events.ADD_TODO:\n            const newState = { todoList: { todos: [action.value].concat(state.todoList.todos) } };\n            return Object.assign({}, state, newState);\n        default:\n            return state;\n    }\n};\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/reducer.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst events_1 = __webpack_require__(/*! ./events */ \"./src/app/components/TodoList/events.ts\");\nexports.todoReducer = (action, state) => {\n    switch (action.type) {\n        case events_1.TodoListEvents.ADD_TODO: {\n            const newState = { todoList: { todos: [action.value].concat(state.todoList.todos) } };\n            return Object.assign({}, state, newState);\n        }\n        case events_1.TodoListEvents.REMOVE_TODO: {\n            const newState = { todoList: { todos: state.todoList.todos.filter(str => str !== action.value) } };\n            return Object.assign({}, state, newState);\n        }\n        case events_1.TodoListEvents.REMOVE_ALL_TODOS: {\n            const newState = { todoList: { todos: [] } };\n            return Object.assign({}, state, newState);\n        }\n        default:\n            return state;\n    }\n};\n\n\n//# sourceURL=webpack:///./src/app/components/TodoList/reducer.ts?");
 
 /***/ }),
 
@@ -321,7 +345,7 @@ eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst events_1 = __webpack_require__(/*! ./events */ \"./src/app/store/events.ts\");\nconst createAction = (type) => (value) => {\n    return {\n        type,\n        value\n    };\n};\nexports.AddTodo = createAction(events_1.Events.ADD_TODO);\n\n\n//# sourceURL=webpack:///./src/app/store/actions.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.createAction = (type) => (value) => {\n    return {\n        type,\n        value\n    };\n};\n\n\n//# sourceURL=webpack:///./src/app/store/actions.ts?");
 
 /***/ }),
 
@@ -334,18 +358,6 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst 
 
 "use strict";
 eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst AppState_1 = __webpack_require__(/*! ./AppState */ \"./src/app/store/AppState.ts\");\nexports.initContext = {\n    dispatch: () => { },\n    state: AppState_1.initState\n};\n\n\n//# sourceURL=webpack:///./src/app/store/context.ts?");
-
-/***/ }),
-
-/***/ "./src/app/store/events.ts":
-/*!*********************************!*\
-  !*** ./src/app/store/events.ts ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar Events;\n(function (Events) {\n    Events[\"ADD_TODO\"] = \"ADD_TODO\";\n})(Events = exports.Events || (exports.Events = {}));\n\n\n//# sourceURL=webpack:///./src/app/store/events.ts?");
 
 /***/ }),
 

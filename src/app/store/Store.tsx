@@ -3,6 +3,7 @@ import { IAction } from "./actions";
 import { initContext, IAppContext } from "./context";
 import { reducer } from "./reducers";
 import { IAppState, initState } from "./AppState";
+import { StoreEvent } from "./events";
 
 const context = React.createContext(initContext);
 
@@ -17,7 +18,7 @@ export class Provider extends React.Component<any, IProviderState> {
     this.state = { appState: initState };
   }
 
-  private dispatch(action: IAction) {
+  private dispatch(action: IAction<StoreEvent, any>) {
     const newState: IAppState = reducer(action, this.state.appState);
     this.setState({ appState: newState });
   }

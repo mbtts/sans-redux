@@ -3,6 +3,7 @@ import { withAppContext } from "../../store/Store";
 import { IAppContext } from "../../store/context";
 import { Todo } from "./Todo";
 import { TodoInput } from "./TodoInput";
+import { RemoveAllTodos } from "./actions";
 
 export interface ITodoListProps {
   context: IAppContext
@@ -21,6 +22,7 @@ class TodoListComponent extends React.PureComponent<ITodoListProps> {
         })}
       </ul>
       <TodoInput />
+      <button onClick={() => this.props.context.dispatch(RemoveAllTodos())}>remove all</button>
     </>
   }
 }

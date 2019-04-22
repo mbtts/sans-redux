@@ -1,7 +1,7 @@
 import * as React from "react";
 import { withAppContext } from "../../store/Store";
 import { IAppContext } from "../../store/context";
-import { AddTodo } from "../../store/actions";
+import { AddTodo, RemoveTodo } from "./actions";
 
 export interface ITodoProps {
   context: IAppContext,
@@ -14,7 +14,12 @@ class TodoComponent extends React.PureComponent<ITodoProps> {
   }
 
   public render() {
-    return <li onClick={() => this.props.context.dispatch(AddTodo(this.props.todo))}>{this.props.todo}</li>;
+    return <li>
+      {this.props.todo}
+      <button onClick={() => this.props.context.dispatch(RemoveTodo(this.props.todo))}>
+        Remove todo
+      </button>
+    </li>;
   }
 }
 

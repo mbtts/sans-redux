@@ -1,7 +1,7 @@
 import * as React from "react";
 import { withAppContext } from "../../store/Store";
 import { IAppContext } from "../../store/context";
-import { AddTodo } from "../../store/actions";
+import { AddTodo } from "./actions";
 
 export interface ITodoInputProps {
   context: IAppContext

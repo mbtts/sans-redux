@@ -1,15 +1,13 @@
-import { Events } from "./events";
+import { StoreEvent } from "./events";
 
-export interface IAction {
-  type: Events;
-  value: any;
+export interface IAction<K extends StoreEvent, T> {
+  type: K;
+  value: T;
 }
 
-const createAction = <T>(type: Events) => (value: T) => {
+export const createAction = <K extends StoreEvent, T>(type: K) => (value: T): IAction<K, T> => {
   return {
     type,
     value
   }
 }
-
-export const AddTodo = createAction<string>(Events.ADD_TODO);
