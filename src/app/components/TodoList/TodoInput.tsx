@@ -11,7 +11,7 @@ interface ITodoInputState {
   text: string
 }
 
-class TodoInputComponent extends React.PureComponent<ITodoInputProps, ITodoInputState> {
+class TodoInputComponent extends React.Component<ITodoInputProps, ITodoInputState> {
   constructor(props: ITodoInputProps) {
     super(props);
     this.state = { text: "" };

@@ -1,18 +1,14 @@
 import * as React from "react";
 import { withAppContext } from "../../store/Store";
 import { IAppContext } from "../../store/context";
-import { AddTodo, RemoveTodo } from "./actions";
+import { RemoveTodo } from "./actions";
 
 export interface ITodoProps {
   context: IAppContext,
   todo: string;
 }
 
-class TodoComponent extends React.PureComponent<ITodoProps> {
-  constructor(props: ITodoProps) {
-    super(props);
-  }
-
+class TodoComponent extends React.Component<ITodoProps> {
   public render() {
     return <li>
       {this.props.todo}

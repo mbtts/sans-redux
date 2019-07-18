@@ -9,11 +9,7 @@ export interface ITodoListProps {
   context: IAppContext
 }
 
-class TodoListComponent extends React.PureComponent<ITodoListProps> {
-  constructor(props: ITodoListProps) {
-    super(props);
-  }
-
+class TodoListComponent extends React.Component<ITodoListProps> {
   public render() {
     return <>
       <ul>

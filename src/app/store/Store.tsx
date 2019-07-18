@@ -17,8 +17,10 @@ export class Provider extends React.Component<any, IProviderState> {
     this.state = { appState: initState };
   }
 
-  private dispatch(action: IAction<any, any>) {
-    const newState: IAppState = reducer(action, this.state.appState);
+  private dispatch(...actions: IAction<any, any>[]) {
+    const newState: IAppState = actions.reduce((state, action) => {
+      return reducer(action, state);
+    }, this.state.appState);
     this.setState({ appState: newState });
   }
 
