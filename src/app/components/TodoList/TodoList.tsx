@@ -1,26 +1,21 @@
 import * as React from "react";
-import { withAppContext } from "../../store/Store";
-import { IAppContext } from "../../store/context";
+import { useContext } from "react";
+import { RemoveAllTodos } from "./actions";
+import { StoreContext } from "../../store/Store";
 import { Todo } from "./Todo";
 import { TodoInput } from "./TodoInput";
-import { RemoveAllTodos } from "./actions";
 
-export interface ITodoListProps {
-  context: IAppContext
-}
+export function TodoList() {
+  const { state, dispatch } = useContext(StoreContext);
+  const { todoList: { todos } } = state;
 
-class TodoListComponent extends React.Component<ITodoListProps> {
-  public render() {
-    return <>
+  return (
+    <>
       <ul>
-        {this.props.context.state.todoList.todos.map((todo, index) => {
-          return <Todo key={index} todo={todo} />
-        })}
+        {todos.map((todo, index) => <Todo key={index} todo={todo} />)}
       </ul>
       <TodoInput />
-      <button onClick={() => this.props.context.dispatch(RemoveAllTodos())}>remove all</button>
+      <button onClick={() => dispatch(RemoveAllTodos())}>remove all</button>
     </>
-  }
+  );
 }
-
-export const TodoList = withAppContext(TodoListComponent);

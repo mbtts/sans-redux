@@ -1,22 +1,21 @@
 import * as React from "react";
-import { withAppContext } from "../../store/Store";
-import { IAppContext } from "../../store/context";
+import { useContext } from "react";
 import { RemoveTodo } from "./actions";
+import { StoreContext } from "../../store/Store";
 
 export interface ITodoProps {
-  context: IAppContext,
   todo: string;
 }
 
-class TodoComponent extends React.Component<ITodoProps> {
-  public render() {
-    return <li>
-      {this.props.todo}
-      <button onClick={() => this.props.context.dispatch(RemoveTodo(this.props.todo))}>
+export function Todo({ todo }: ITodoProps) {
+  const { dispatch } = useContext(StoreContext);
+
+  return (
+    <li>
+      {todo}
+      <button onClick={() => dispatch(RemoveTodo(todo))}>
         Remove todo
       </button>
-    </li>;
-  }
+    </li>
+  );
 }
-
-export const Todo = withAppContext(TodoComponent);

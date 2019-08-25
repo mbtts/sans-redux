@@ -12,10 +12,7 @@ export const reducer = (action: IAction<any, any>, state: IAppState): IAppState 
   console.log("Event dispatched", action, state);
   console.log('--------------------------');
 
-  const result = reducers.reduce((acc, nextReducer) => {
-    //@ts-ignore
-    return nextReducer(action, acc);
-  }, state);
+  const result = reducers.reduce((acc, nextReducer) => nextReducer(action, acc), state);
 
   console.log("New state", result);
   console.log('--------------------------');

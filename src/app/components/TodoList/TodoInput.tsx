@@ -1,41 +1,27 @@
 import * as React from "react";
-import { withAppContext } from "../../store/Store";
-import { IAppContext } from "../../store/context";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { AddTodo } from "./actions";
+import { StoreContext } from "../../store/Store";
 
-export interface ITodoInputProps {
-  context: IAppContext
-}
+export function TodoInput() {
+  const { dispatch } = useContext(StoreContext);
 
-interface ITodoInputState {
-  text: string
-}
+  const [text, setText] = useState("");
 
-class TodoInputComponent extends React.Component<ITodoInputProps, ITodoInputState> {
-  constructor(props: ITodoInputProps) {
-    super(props);
-    this.state = { text: "" };
-    this.update = this.update.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  private update(event: any) {
-    this.setState({ text: event.target.value });
-  }
-
-  private onSubmit(event: React.FormEvent) {
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     event.stopPropagation();
-    this.props.context.dispatch(AddTodo(this.state.text));
-    this.setState({ text: "" })
-    return false;
+    dispatch(AddTodo(text));
+    setText("");
+ 
+    return false;  
   }
 
-  public render() {
-    return <form onSubmit={this.onSubmit}>
-      <input type="text" name="todo" value={this.state.text} onChange={this.update} />
-    </form>
+  function update(event: ChangeEvent<HTMLInputElement>) {
+    setText(event.target.value);
   }
-}
 
-export const TodoInput = withAppContext(TodoInputComponent);
+  return <form onSubmit={onSubmit}>
+    <input type="text" name="todo" value={text} onChange={update} />
+  </form>
+};

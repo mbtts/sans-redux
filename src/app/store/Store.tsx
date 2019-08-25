@@ -1,49 +1,23 @@
 import * as React from "react";
+import { useState } from "react";
 import { IAction } from "./actions";
-import { initContext, IAppContext } from "./context";
+import { initContext } from "./context";
 import { reducer } from "./reducers";
-import { IAppState, initState } from "./AppState";
+import { initState } from "./AppState";
 
-const context = React.createContext(initContext);
+export const StoreContext = React.createContext(initContext);
 
-interface IProviderState {
-  appState: IAppState
-}
-
-export class Provider extends React.Component<any, IProviderState> {
-  constructor(props: any) {
-    super(props);
-    this.dispatch = this.dispatch.bind(this);
-    this.state = { appState: initState };
+export function Provider({ children }: any) {
+  const [state, setState] = useState(initState);
+ 
+  function dispatch(...actions: IAction<any, any>[]) {
+    const newState = actions.reduce((s, a) => reducer(a, s), state);
+    setState(newState);
   }
 
-  private dispatch(...actions: IAction<any, any>[]) {
-    const newState: IAppState = actions.reduce((state, action) => {
-      return reducer(action, state);
-    }, this.state.appState);
-    this.setState({ appState: newState });
-  }
-
-  public render() {
-    return <context.Provider value={{ dispatch: this.dispatch, state: this.state.appState }}>
-      {this.props.children}
-    </context.Provider>
-  }
-}
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-
-type Context = {
-  context: IAppContext
-}
-
-export function withAppContext<P extends Context, T = Omit<P, 'context'>>(Component: React.ComponentClass<P>) {
-  return (props: T) => {
-    return <context.Consumer>
-      {(value: IAppContext) => {
-        //@ts-ignore
-        return <Component {...props} context={value} />;
-      }}
-    </context.Consumer>;
-  };
-}
+  return (
+    <StoreContext.Provider value={{ dispatch, state }}>
+      {children}
+    </StoreContext.Provider>
+  );
+};
