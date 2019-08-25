@@ -2,7 +2,7 @@ import { IAppState } from "../../store/AppState";
 import { TodoListEvents } from "./events";
 import { ITodoListAction } from "./actions";
 
-export const todoReducer = (action: ITodoListAction, state: IAppState) => {
+export const todoReducer = (state: IAppState, action: ITodoListAction) => {
   switch (action.type) {
     case TodoListEvents.ADD_TODO: {
       const newState = { todoList: { todos: [action.value].concat(state.todoList.todos) } };

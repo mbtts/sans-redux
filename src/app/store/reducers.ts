@@ -2,17 +2,17 @@ import { IAction } from "./actions";
 import { IAppState } from "./AppState";
 import { todoReducer } from "../components/TodoList/reducer";
 
-type IReducer = (action: IAction<any, any>, state: IAppState) => IAppState;
+export type IReducer = (state: IAppState, action: IAction<any, any>) => IAppState;
 
 const reducers: IReducer[] = [
   todoReducer
 ]
 
-export const reducer = (action: IAction<any, any>, state: IAppState): IAppState => {
+export const reducer = (state: IAppState, action: IAction<any, any>): IAppState => {
   console.log("Event dispatched", action, state);
   console.log('--------------------------');
 
-  const result = reducers.reduce((acc, nextReducer) => nextReducer(action, acc), state);
+  const result = reducers.reduce((acc, nextReducer) => nextReducer(acc, action), state);
 
   console.log("New state", result);
   console.log('--------------------------');
